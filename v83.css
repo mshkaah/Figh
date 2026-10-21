@@ -1,0 +1,17 @@
+#searchPage .stool > i.ti,
+#searchPage .rs-sc-auth > i.ti,
+#searchPage .filter-actions button > i.ti { display: none; }
+.filter-av { width: 32px !important; height: 32px !important; }
+.filter-av-ph .ti { font-size: 18px !important; }
+.filter-author-row { font-size: 13.5px; padding: 4px 0; }
+.filter-book-row { font-size: 12.5px; }
+.filter-find { padding: 7px 12px !important; font-size: 13px; }
+.filter-actions button { padding: 6px 8px !important; font-size: 12px !important; }
+.search-preset-chip { padding: 4px 11px !important; font-size: 12.5px !important; }
+.lib-card-photo { font-size: 38px; }
+.pinned-chip .pin-ic { font-size: 30px; }
+
+.shr-img.fit { overflow: hidden; display: flex; justify-content: center; padding: 6px; }
+.shr-img.fit img { width: auto; max-width: 100%; max-height: calc(58vh - 12px); height: auto; object-fit: contain; border-radius: 10px; }
+
+#sbCoach.bot { top: auto !important; bottom: 88px; }
