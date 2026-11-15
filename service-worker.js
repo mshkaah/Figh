@@ -197,16 +197,11 @@ async function cleanNavResponse(resp) {
 }
 
 function isDbRequest(url) { return new URL(url).pathname.endsWith('/books.db'); }
-function isDbPartRequest(url) { return /\/books\.db\.(?:part)?\d+$/.test(new URL(url).pathname); }
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   if (new URL(req.url).origin !== self.location.origin) return;
-
-  if (isDbPartRequest(req.url)) {
-    event.respondWith(fetch(req).catch(() => new Response('', { status: 504, statusText: 'Offline' })));
-    return;
-  }
+  if (/\/(books\.db\.part\d+|books_part\d+\.bin)$/.test(new URL(req.url).pathname)) return;
 
   if (isDbRequest(req.url)) {
     event.respondWith((async () => {

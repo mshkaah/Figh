@@ -1561,43 +1561,73 @@ function migrateUrwaSavedData() {
 
 const DB_CACHE_NAME = 'rasael-db-' + EXPECTED_DB_VERSION;
 const DB_MIN_BYTES = 5 * 1048576;
-async function loadDbParts(url, cache, _say) {
-  const schemes = [(n) => '.part' + n, (n) => '.' + String(n).padStart(3, '0')];
-  for (const sch of schemes) {
-    const pieces = []; let received = 0, n = 0;
-    for (let i = 1; i <= 20; i++) {
-      const r = await fetch(url + sch(i));
-      const html = /text\/html/i.test(r.headers.get('Content-Type') || '');
-      if (r.status === 404 || html) { if (i === 1) break; else break; }
-      if (!r.ok) throw new Error('تعذّر تنزيل ' + 'books.db' + sch(i) + ' (رمز ' + r.status + ')');
-      n = i;
-      _say('تنزيل الكتب لأول مرة — الجزء ' + i + '…');
-      const total = +r.headers.get('Content-Length') || 0;
-      const reader = r.body.getReader();
-      let got = 0;
-      while (true) {
-        let _t;
-        const { done, value } = await Promise.race([
-          reader.read(),
-          new Promise((_, rej) => { _t = setTimeout(() => rej(new Error('توقّف تنزيل الجزء ' + i + ' من قاعدة البيانات (ركود 30 ثانية).')), 30000); })
-        ]);
-        clearTimeout(_t);
-        if (done) break;
-        pieces.push(value); got += value.length; received += value.length;
-        const lp = document.getElementById('loadProgress');
-        if (lp) lp.textContent = 'الجزء ' + i + ': ' + (got / 1048576).toFixed(1) + (total ? ' / ' + (total / 1048576).toFixed(1) : '') + ' MB — المجموع ' + (received / 1048576).toFixed(1) + ' MB';
-      }
+const DB_PART_SCHEMES = [(n) => 'books.db.part' + n, (n) => 'books_part' + n + '.bin'];
+const DB_MAX_PARTS = 8;
+function dbHeaderTotal(u8) {
+  if (!u8 || u8.length < 32 || new TextDecoder('latin1').decode(u8.subarray(0, 15)) !== 'SQLite format 3') return 0;
+  const dv = new DataView(u8.buffer, u8.byteOffset, u8.byteLength);
+  let ps = dv.getUint16(16, false); if (ps === 1) ps = 65536;
+  return ps * dv.getUint32(28, false);
+}
+async function readPartInto(resp, st, onProgress) {
+  const reader = resp.body.getReader();
+  while (true) {
+    let _t;
+    const { done, value } = await Promise.race([
+      reader.read(),
+      new Promise((_, rej) => { _t = setTimeout(() => rej(new Error('توقّف تنزيل قاعدة البيانات عند ' + (st.n / 1048576).toFixed(1) + ' ميغابايت (ركود 30 ثانية).')), 30000); })
+    ]);
+    clearTimeout(_t);
+    if (done) break;
+    if (st.n === 0 && !st.expected) {
+      st.expected = dbHeaderTotal(value);
+      if (st.expected > 0) st.buf = new Uint8Array(st.expected);
     }
-    if (!n) continue;
-    const buf = new Uint8Array(received); let off = 0;
-    for (const c of pieces) { buf.set(c, off); off += c.length; }
-    pieces.length = 0;
-    if (cache && buf.length > DB_MIN_BYTES) {
-      cache.put(url, new Response(buf, { status: 200, headers: { 'Content-Length': String(buf.length), 'Content-Type': 'application/octet-stream' } })).catch(() => {});
+    if (st.n + value.length > st.buf.length) {
+      const bigger = new Uint8Array(Math.max(st.buf.length * 2, st.n + value.length));
+      bigger.set(st.buf.subarray(0, st.n), 0);
+      st.buf = bigger;
     }
-    return buf;
+    st.buf.set(value, st.n);
+    st.n += value.length;
+    onProgress(st.n);
   }
-  return null;
+}
+async function loadDbParts(cache, _say) {
+  const isBin = (r) => r.ok && !/text\/html/i.test(r.headers.get('Content-Type') || '');
+  let first = null, scheme = null;
+  for (const sc of DB_PART_SCHEMES) {
+    try {
+      const r = await fetch(new URL(sc(1), location.href).href);
+      if (isBin(r)) { first = r; scheme = sc; break; }
+    } catch (e) {}
+  }
+  if (!first) return null;
+  _say('تنزيل الكتب لأول مرة (حجمها نحو 140 ميغابايت) — بعدها تعمل بلا إنترنت وبسرعة…');
+  const st = { buf: new Uint8Array(1), n: 0, expected: 0 };
+  const lp = document.getElementById('loadProgress');
+  let part = 1, resp = first;
+  while (resp) {
+    const pn = part;
+    await readPartInto(resp, st, (n) => {
+      if (lp) lp.textContent = st.expected ? `${(n / 1048576).toFixed(1)} MB / ${(st.expected / 1048576).toFixed(1)} MB` : `الجزء ${pn} — ${(n / 1048576).toFixed(1)} MB`;
+    });
+    part++; resp = null;
+    if (part <= DB_MAX_PARTS) {
+      const r = await fetch(new URL(scheme(part), location.href).href);
+      if (isBin(r)) resp = r;
+    }
+  }
+  if (st.expected && st.n !== st.expected) {
+    throw new Error(`قاعدة الكتب ناقصة: وصل ${(st.n / 1048576).toFixed(1)} ميغابايت من ${(st.expected / 1048576).toFixed(1)}. تأكّد أن كل أجزاء books.db (part1, part2) مرفوعة بجانب index.html ثم أعد المحاولة.`);
+  }
+  const out = st.n !== st.buf.length ? st.buf.subarray(0, st.n) : st.buf;
+  if (cache && out.length > DB_MIN_BYTES) {
+    try {
+      cache.put(new URL('books.db', location.href).href, new Response(out, { status: 200, headers: { 'Content-Length': String(out.length), 'Content-Type': 'application/octet-stream' } })).catch(() => {});
+    } catch (e) {}
+  }
+  return out;
 }
 async function loadDbBytes(_say) {
   const url = new URL('books.db', location.href).href;
@@ -1617,14 +1647,10 @@ async function loadDbBytes(_say) {
       }
     } catch (e) { console.warn('تعذّرت القراءة من الكاش، سيُنزَّل من الشبكة:', e); }
   }
+  { const joined = await loadDbParts(cache, _say); if (joined) return joined; }
   _say('تنزيل الكتب لأول مرة (حجمها نحو 100 ميغابايت) — بعدها تعمل بلا إنترنت وبسرعة…');
   const resp = await fetch(url);
-  const _isHtml = /text\/html/i.test(resp.headers.get('Content-Type') || '');
-  if (!resp.ok || _isHtml) {
-    const parts = await loadDbParts(url, cache, _say);
-    if (parts) return parts;
-    if (!resp.ok) throw new Error('تعذّر تنزيل books.db (رمز ' + resp.status + ') ولا توجد أجزاؤه books.db.part1 / books.db.part2 بجانب index.html');
-  }
+  if (!resp.ok) throw new Error('تعذّر تنزيل books.db (رمز ' + resp.status + ')');
   const total = +resp.headers.get('Content-Length') || 0;
   let readBody = resp.body;
   if (cache && total > DB_MIN_BYTES && resp.status === 200 && !(navigator.serviceWorker && navigator.serviceWorker.controller)) {

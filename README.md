@@ -27,7 +27,8 @@
 ├── index.html             واجهة التطبيق
 ├── service-worker.js      العمل بلا إنترنت والتحديثات
 ├── manifest.json          إعدادات التثبيت (PWA)
-├── books.db.part1/part2   قاعدة البيانات (SQLite) مقسومة جزأين (كل جزء أقل من 100MB) وتُجمَّع في المتصفح وتُحمَّل بـ sql.js
+├── books.db.part1/part2   قاعدة البيانات (SQLite) مقسومة جزأين، تُدمج في المتصفح وتُحمَّل بـ sql.js
+│                          (أو books.db كاملاً إن لم تُوجد الأجزاء)
 ├── search-index.bin       فهرس بحث مُسبق يُولَّد من books.db
 ├── css/                   التنسيقات
 ├── js/                    السكربتات
@@ -88,7 +89,8 @@ python3 -m http.server 8000
 ## النشر
 
 - **GitHub Pages:** يكفي تفعيله من إعدادات المستودع على الفرع الرئيسي؛ الملف `.nojekyll` موجود.
-- **حجم `books.db`:** نحو 135 ميغابايت، فهو مقسوم إلى `books.db.part1` و`books.db.part2` (أقل من حدّ 100MB لكل ملف في GitHub) وبجانب `index.html`؛ يجمعهما التطبيق تلقائياً ويحفظ القاعدة كاملة في الكاش. لإعادة التقسيم بعد أي تعديل: `split -b 74000000 -d -a1 books.db bp_ && mv bp_0 books.db.part1 && mv bp_1 books.db.part2` ثم احذف `books.db` الكامل من المستودع. وإن وُجد `books.db` كاملاً بجانب `index.html` يُستخدم مباشرة.
+- **حجم `books.db`:** نحو **112 ميغابايت**، وهذا يتجاوز حدّ **100 ميغابايت** للملف الواحد في GitHub. استخدم [Git LFS](https://git-lfs.com) أو استضف الملف خارجياً، وتأكد أن مساره بجانب `index.html` (يُطلب باسم `books.db`).
+- **أجزاء القاعدة:** الملفان `books.db.part1` و`books.db.part2` (أو `books_part1.bin` و`books_part2.bin`) يوضعان بجانب `index.html`، ويدمجهما التطبيق تلقائياً ويتحقق من اكتمال الحجم. لبناء الفهرس أو الأدوات: `cat books.db.part1 books.db.part2 > books.db`.
 - الاستضافة تحتاج **HTTPS** ليعمل الـ Service Worker والمشاركة والإشعارات.
 
 ## الأدوات
