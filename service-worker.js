@@ -1,4 +1,4 @@
-const SHELL_VERSION = '1.2.7';
+const SHELL_VERSION = '1.0.0';
 const DB_VERSION = '29';
 importScripts('./js/notif-core.js');
 const SHELL_CACHE = `rasael-shell-${SHELL_VERSION}`;
