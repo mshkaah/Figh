@@ -28,7 +28,6 @@ from docx.oxml.ns import qn
 
 SRC = '/mnt/user-data/uploads/الثمرة_في_أحكام_العمرة_1445_لكترونية.docx'
 
-
 CANONICAL_AUTHER_ID = {
     'السيستاني': 1,
     'الخامنئي': 3,
@@ -87,7 +86,6 @@ def resolve_name(raw):
                 return _ALIAS_TO_CANON[k2]
     return None
 
-
 def safe_strip(t):
     return t.strip(' \t\n\r\x0b\x0c')
 
@@ -143,7 +141,6 @@ def read_raw_stream():
         else:
             raw.append(('table', clean_table(it)))
     return raw
-
 
 def split_internal_bullets(t):
     """A few paragraphs contain multiple \u2002-marked opinions glued together."""
@@ -270,7 +267,6 @@ def apply_source_patches(merged):
         out.append((kind, val))
     return out
 
-
 FRONT_MATTER_END_MARKER = 'ينقسم الحج إلى ثلاثة أنواع'
 
 def drop_front_matter(merged):
@@ -278,7 +274,6 @@ def drop_front_matter(merged):
         if kind == 'text' and FRONT_MATTER_END_MARKER in val:
             return merged[i:]
     return merged
-
 
 def find_paren_groups(t):
     groups = []
@@ -384,7 +379,6 @@ def parse_multi_opinion_cell(cell_text):
         opinions.append({'text': base, 'attributions': attrs, 'flag': flag})
     return opinions
 
-
 KNOWN_SUBHEADINGS = {
     'الاستطاعة', 'المواقيت', 'الإحرام', 'صلاة الطواف', 'السعي بين الصفا والمروة',
     'التقصير', 'بين العمرة والحج', 'أعمال الحج', 'الإحرام لحج التمتع',
@@ -448,7 +442,6 @@ def rebuild_kafara_table(tbl):
                       'opinions': parse_multi_opinion_cell(kafara_cell)})
     return {'title': 'جدول الكفارات', 'kind': 'kafara_table',
             'columns': ['النوع', 'الكفارة'], 'rows': rows}
-
 
 def build():
     raw = read_raw_stream()

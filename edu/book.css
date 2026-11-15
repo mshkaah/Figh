@@ -1,0 +1,481 @@
+#shT .bt {
+  display: block;
+}
+#shT .bs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+  font: 600 12px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+#shT .bs em {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-style: normal;
+}
+#shT .bs em b {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  color: var(--surface);
+  font: 700 11px Tahoma;
+}
+#shT .bs em.on {
+  color: var(--accent-text);
+}
+#shT .bs em.on b {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+#shT .bs em.dn b {
+  background: var(--accent-text);
+  color: var(--surface);
+}
+#shT .bs em.dn b i {
+  font-size: 12px;
+}
+
+.tray {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.tray .tc {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.35;
+}
+.tray .tc b {
+  font: 700 15px 'Noto Naskh Arabic';
+  color: var(--accent-text);
+}
+.tray .tc small {
+  font: 500 12px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.tray button {
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 700 14px 'Noto Naskh Arabic';
+}
+.tray button:disabled {
+  opacity: 0.4;
+}
+
+.crumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  margin: 0 0 10px;
+  font: 600 13.5px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.crumb button {
+  min-height: 40px;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--accent-text);
+  font: 700 13.5px 'Noto Naskh Arabic';
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.crumb > i.ti {
+  font-size: 14px;
+}
+.crumb b {
+  color: var(--text);
+  padding: 0 6px;
+}
+
+.kg.grp .kr b {
+  font: 700 15px 'Noto Naskh Arabic';
+}
+.kg .kx {
+  border-top: 1px solid var(--line);
+  background: var(--surface-2);
+}
+.kg .kx .kr {
+  padding-inline-start: 20px;
+}
+.kg .kx .kr:first-child {
+  border-top: 0;
+}
+.kr.sub .kt b {
+  font: 700 14.5px 'Noto Naskh Arabic';
+}
+.kr .sn {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.kr.hit mark {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 1px;
+}
+.kcard.rec {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 12px;
+  text-align: start;
+  border-color: var(--accent);
+  background: var(--chip);
+}
+.kcard.rec > i.ti {
+  font-size: 22px;
+  color: var(--accent-text);
+  flex: none;
+}
+.kcard.rec .kt {
+  flex: 1;
+  min-width: 0;
+}
+.kcard.rec .kt b {
+  display: block;
+  font: 700 15px 'Noto Naskh Arabic';
+}
+.kcard.rec .kt small {
+  display: block;
+  color: var(--text-dim);
+  font: 500 12px 'Noto Naskh Arabic';
+}
+.kld {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px;
+  color: var(--text-dim);
+}
+.spin {
+  animation: bkspin 1s linear infinite;
+  display: inline-block;
+}
+@keyframes bkspin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.kpv {
+  flex: none;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent-text);
+  display: grid;
+  place-items: center;
+}
+.kpv i {
+  font-size: 20px;
+}
+.pvt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.pvt .kt {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+.pvt .kt b {
+  display: block;
+  font: 700 15px 'Noto Naskh Arabic';
+}
+.pvt .kt small {
+  color: var(--text-dim);
+  font: 500 12px 'Noto Naskh Arabic';
+}
+.pvl {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pvb {
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 10px 12px;
+}
+.pvb.on {
+  border-color: var(--accent);
+  background: var(--chip);
+}
+.pvh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.pvh b {
+  font: 700 13.5px 'Noto Naskh Arabic';
+  color: var(--accent-text);
+}
+.pvh .kc {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: transparent;
+}
+.pvh .kc.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.strow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  min-height: 56px;
+  border-top: 1px solid var(--line);
+}
+.strow .kt {
+  flex: 1;
+  min-width: 0;
+  font: 600 15px 'Noto Naskh Arabic';
+}
+.strow .kt small {
+  display: block;
+  font: 500 12px/1.5 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.kcard.pgc {
+  margin-bottom: 10px;
+  padding: 0;
+  overflow: hidden;
+}
+.pgc .pgh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.pgc .pgh b {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 700 14px 'Noto Naskh Arabic';
+  color: var(--accent-text);
+}
+.pgc .pgh small {
+  color: var(--text-dim);
+  font: 500 12px 'Noto Naskh Arabic';
+}
+.orw2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 54px;
+  padding: 4px 6px 4px 10px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+.orw2:first-of-type {
+  border-top: 0;
+}
+.orw2 .grip {
+  padding: 14px 8px;
+  color: var(--text-dim);
+  font-size: 20px;
+  touch-action: none;
+}
+.orw2 .tt {
+  flex: 1;
+  min-width: 0;
+  font: 600 14.5px 'Noto Naskh Arabic';
+}
+.orw2 .tt small {
+  display: block;
+  color: var(--text-dim);
+  font: 500 11.5px 'Noto Naskh Arabic';
+}
+.orw2 .rmx {
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+}
+.orw2.drag {
+  position: relative;
+  z-index: 5;
+  background: var(--chip);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+  transition: none;
+}
+.kcard.cmp {
+  margin-bottom: 10px;
+}
+
+.sh.tall {
+  height: 88%;
+  max-height: 92%;
+}
+.sh.tall #shB {
+  flex: 1;
+  min-height: 0;
+}
+.kg-t.pgt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+}
+.kg-t.pgt i.ti {
+  font-size: 14px;
+}
+
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  text-align: start;
+  color: var(--text);
+}
+.opt > i.ti {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font-size: 22px;
+}
+.opt .kt {
+  flex: 1;
+  min-width: 0;
+}
+.opt .kt b {
+  display: block;
+  font: 700 15.5px 'Noto Naskh Arabic';
+}
+.opt .kt small {
+  display: block;
+  margin-top: 2px;
+  font: 500 12.5px/1.6 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.opt .rd {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--line-strong);
+}
+.opt.on {
+  border-color: var(--accent);
+  background: var(--chip);
+}
+.opt.on > i.ti {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.opt.on .rd {
+  border-color: var(--accent);
+  background: radial-gradient(circle, var(--accent) 0 5px, transparent 6px);
+}
+.opt:disabled {
+  opacity: 0.45;
+}
+.strow2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.strow2 .kt {
+  flex: 1;
+}
+.strow2 .kt small {
+  display: block;
+  color: var(--text-dim);
+  font: 500 12px 'Noto Naskh Arabic';
+}
+.kg > .kr.sw .kt small {
+  font: 500 12.5px/1.6 'Noto Naskh Arabic';
+}
+.opt,
+.opt .kt {
+  white-space: normal;
+}
+.opt .kt small {
+  overflow-wrap: anywhere;
+}
+.gdef .gd-f {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+}
+.gdef .kchip.pin {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kcard.rec {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: normal;
+}
+.kcard.rec .kt b,
+.kcard.rec .kt small {
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+.kcard.rec .kt small {
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+}

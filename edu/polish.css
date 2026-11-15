@@ -1,0 +1,1001 @@
+:root {
+  --tool-h: 50px;
+}
+:root {
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#fx {
+  z-index: 90;
+}
+.cust {
+  min-height: 0;
+  padding: 0;
+}
+
+#pal {
+  gap: 10px;
+  padding: 2px 10px 6px;
+  --swc: 28px;
+}
+#pal .pws {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+#pal .swc {
+  position: relative;
+  flex: none;
+  width: var(--swc);
+  height: var(--swc);
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  border: 0;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
+  transition:
+    transform 0.18s var(--ease),
+    box-shadow 0.18s;
+}
+#pal .swc.lt {
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+}
+#pal .swc::before {
+  content: '';
+  position: absolute;
+  inset: -6px -3px;
+}
+#pal .swc.on {
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 2.5px var(--surface),
+    0 0 0 4.5px var(--text);
+}
+#pal .more {
+  position: relative;
+  flex: none;
+  width: var(--swc);
+  height: var(--swc);
+  min-height: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: conic-gradient(#ff4d4d, #ffb84d, #f5ee4d, #4dd98c, #4dc3ff, #7a6bff, #e05cd0, #ff4d4d);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+}
+#pal .more::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+#pal .more::before {
+  content: '';
+  position: absolute;
+  inset: -6px -3px;
+}
+#pal .lbl {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 13px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+#pal .pgrp {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-inline-start: 10px;
+  border-inline-start: 1px solid var(--line);
+}
+#pal .wd2,
+#pal .pt2 {
+  width: 40px;
+  height: 40px;
+  min-height: 40px;
+  border-radius: 13px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+#pal .wd2 i {
+  display: block;
+  background: var(--text);
+  border-radius: 50%;
+  transition:
+    width 0.15s,
+    height 0.15s;
+}
+#pal .pt2.on {
+  background: var(--chip);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+#pal .pgap {
+  flex: 1;
+}
+#pal .hgr {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 13px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+#pal .hgr .hg {
+  border: 0;
+  background: transparent;
+  min-height: 36px;
+  border-radius: 10px;
+}
+#pal .hgr .hg.on {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+#pop {
+  padding: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  width: min(332px, calc(100vw - 20px));
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  box-shadow: 0 14px 44px rgba(40, 28, 12, 0.28);
+  transform-origin: 50% 100%;
+}
+#pop.pp-in {
+  animation: ppIn 0.26s var(--ease);
+}
+@keyframes ppIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.94);
+  }
+}
+#pop.dragging2 {
+  box-shadow: 0 20px 56px rgba(40, 28, 12, 0.38);
+  transition: none;
+}
+#pop > *:not(.pp-grab) {
+  margin-inline: 16px;
+}
+#pop > *:last-child {
+  margin-bottom: 16px;
+}
+.pp-grab {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 6px 0 12px;
+  margin: 0 0 10px !important;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  cursor: grab;
+  touch-action: none;
+}
+.pp-grip {
+  flex: none;
+  width: 20px;
+  height: 14px;
+  background: radial-gradient(circle, var(--line-strong) 1.6px, transparent 1.9px) 0 0/7px 7px;
+  opacity: 0.9;
+}
+.pp-ttl {
+  flex: 1;
+  font: 700 14px 'Noto Naskh Arabic';
+  color: var(--text);
+}
+.pp-x {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-dim);
+  display: grid;
+  place-items: center;
+}
+.pp-x i {
+  font-size: 18px;
+}
+.pp-n {
+  margin: 8px 16px 0;
+  font: 500 12.5px/1.7 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.pp-t {
+  margin-top: 4px;
+}
+.cgrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  justify-items: center;
+}
+.cg {
+  width: 32px;
+  height: 32px;
+  min-height: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s var(--ease);
+}
+.cg.lt {
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+}
+.cg:active {
+  transform: scale(0.9);
+}
+.cg.on {
+  box-shadow:
+    0 0 0 2.5px var(--surface),
+    0 0 0 4.5px var(--text);
+  transform: scale(1.08);
+}
+.cust2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: calc(100% - 32px);
+  min-height: 56px;
+  margin-top: 12px !important;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface-2);
+  text-align: start;
+}
+.cust2 .cw {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: conic-gradient(#ff4d4d, #ffb84d, #f5ee4d, #4dd98c, #4dc3ff, #7a6bff, #e05cd0, #ff4d4d);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+}
+.cust2 .kt {
+  flex: 1;
+  font: 700 14px 'Noto Naskh Arabic';
+}
+.cust2 small {
+  display: block;
+  font: 500 11.5px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.bpv {
+  display: block;
+  width: calc(100% - 32px);
+  height: 78px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  margin-bottom: 12px !important;
+}
+.brs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 8px !important;
+}
+.br {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 62px;
+  padding: 8px 2px 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+}
+.br svg {
+  width: 34px;
+  height: 22px;
+}
+.br span {
+  font: 600 12px 'Noto Naskh Arabic';
+}
+.br.on {
+  background: var(--chip);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+.lsr {
+  margin-bottom: 8px !important;
+}
+.lsr button {
+  flex-direction: column;
+  gap: 3px;
+  min-height: 58px;
+}
+.lsr button i {
+  font-size: 20px;
+}
+.lsr span {
+  font: 600 12px 'Noto Naskh Arabic';
+}
+.arr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.arr button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-height: 64px;
+  padding: 8px 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  font: 600 11.5px/1.3 'Noto Naskh Arabic';
+  text-align: center;
+}
+.arr button .ti {
+  font-size: 21px;
+  color: var(--accent-text);
+}
+.pp-r .krg {
+  min-width: 0;
+}
+
+.vw {
+  animation: vwIn 0.26s var(--ease);
+}
+.vw-b {
+  animation-name: vwBack;
+}
+@keyframes vwIn {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+}
+@keyframes vwBack {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+}
+.kr.hub {
+  min-height: 64px;
+}
+.kr.hub .hi {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--hc) 16%, var(--surface));
+  color: var(--hc);
+}
+.kr.hub .hi i {
+  font-size: 22px;
+  color: inherit;
+}
+.st-lead {
+  margin: 2px 4px 12px;
+  line-height: 1.8;
+}
+.st-hint {
+  font: 500 11.5px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+  margin-inline-start: 6px;
+}
+.st-reset {
+  margin-top: 10px;
+}
+.opts.sm .opt {
+  min-height: 58px;
+  padding: 10px 12px;
+}
+.opts.sm .opt > i.ti {
+  width: 38px;
+  height: 38px;
+  font-size: 20px;
+}
+.fxg {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.fxb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-height: 78px;
+  padding: 10px 4px;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  font: 600 12.5px 'Noto Naskh Arabic';
+}
+.fxb i {
+  font-size: 24px;
+  color: var(--text-dim);
+}
+.fxb.on {
+  border-color: var(--accent);
+  background: var(--chip);
+}
+.fxb.on i {
+  color: var(--accent-text);
+}
+.kg.tl .tr small {
+  display: block;
+  font: 500 11.5px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.src-tools {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.pgpv {
+  position: relative;
+  height: 96px;
+  border-radius: 16px;
+  border: 1px solid var(--line-strong);
+  margin: 4px 0 4px;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+  box-shadow: inset 0 -18px 28px -22px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.35s var(--ease);
+}
+.pgpv-t {
+  font: 700 13px 'Noto Naskh Arabic';
+  opacity: 0.7;
+  transition: color 0.3s;
+}
+.ppg {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  justify-items: center;
+  padding: 4px 2px;
+}
+.pp {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  min-height: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: var(--c);
+  box-shadow: inset 0 0 0 1.5px var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  animation: ppPop 0.35s var(--ease) both;
+  animation-delay: calc(var(--i) * 18ms);
+  transition: transform 0.18s var(--ease);
+}
+@keyframes ppPop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+}
+.pp i {
+  font-size: 20px;
+  transform: scale(0.4);
+  transition: transform 0.2s var(--ease);
+}
+.pp.dk {
+  color: transparent;
+}
+.pp.on {
+  box-shadow:
+    0 0 0 3px var(--surface),
+    0 0 0 5px var(--accent);
+  color: #17212b;
+}
+.pp.dk.on {
+  color: #fff;
+}
+.pp.on i {
+  transform: scale(1);
+}
+.pp.more {
+  background: conic-gradient(#ff4d4d, #ffb84d, #f5ee4d, #4dd98c, #4dc3ff, #7a6bff, #e05cd0, #ff4d4d);
+}
+.pp.more.on i {
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+.pat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.ptn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+  min-height: 0;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  animation: ppPop 0.35s var(--ease) both;
+  animation-delay: calc(var(--i) * 30ms);
+  transition:
+    border-color 0.18s,
+    background 0.18s;
+}
+.ptn .pv {
+  display: block;
+  height: 58px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  transition: background-color 0.35s;
+}
+.ptn b {
+  font: 700 12.5px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+  text-align: center;
+}
+.ptn.on {
+  border-color: var(--accent);
+  background: var(--chip);
+}
+.ptn.on b {
+  color: var(--accent-text);
+}
+
+#sessPop {
+  position: fixed;
+  z-index: 60;
+  width: min(300px, calc(100vw - 20px));
+  padding: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(40, 28, 12, 0.28);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.94);
+  transform-origin: var(--ax, 50%) 0;
+  transition:
+    opacity 0.2s,
+    transform 0.26s var(--ease);
+}
+#sessPop.s {
+  opacity: 1;
+  transform: none;
+}
+#sessPop.shake {
+  animation: spShake 0.4s;
+}
+@keyframes spShake {
+  25% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-6px);
+  }
+}
+.sp-arrow {
+  position: absolute;
+  top: -7px;
+  left: calc(var(--ax, 50%) - 7px);
+  width: 14px;
+  height: 14px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.sp-o {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 62px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  text-align: start;
+  transition:
+    border-color 0.18s,
+    background 0.18s;
+}
+.sp-o .sp-i {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--text-dim);
+}
+.sp-i i {
+  font-size: 21px;
+}
+.sp-o .kt {
+  flex: 1;
+  min-width: 0;
+}
+.sp-o b {
+  display: block;
+  font: 700 14.5px 'Noto Naskh Arabic';
+}
+.sp-o small {
+  display: block;
+  font: 500 11.5px/1.5 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.sp-o .sp-c {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  transition: all 0.18s;
+}
+.sp-c i {
+  font-size: 14px;
+}
+.sp-o.on {
+  border-color: var(--accent);
+  background: var(--chip);
+}
+.sp-o.on .sp-i {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.sp-o.on .sp-c {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.sp-go {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: 700 14.5px 'Noto Naskh Arabic';
+}
+.sp-go i {
+  font-size: 20px;
+}
+.sp-f {
+  margin-top: 4px;
+}
+.ptn .pv {
+  width: 100%;
+  flex: none;
+}
+
+.wid .bkc.pinned {
+  position: relative;
+  padding: 4px 6px 2px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 10%, var(--surface)), var(--surface));
+  box-shadow:
+    inset 0 0 0 2px var(--accent),
+    0 6px 18px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.wid .bkc.pinned::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 8px;
+  border-radius: 18px 0 0 18px;
+  background: var(--accent);
+}
+[dir='rtl'] .wid .bkc.pinned::before {
+  border-radius: 0 18px 18px 0;
+}
+.wid .bkc.pinned .bkh {
+  border-bottom: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  padding-inline-start: 8px;
+}
+.wid .bkc.pinned .bkh b {
+  color: var(--accent-t);
+}
+.wid .bkc.pinned .bk,
+.wid .bkc.pinned .mb {
+  opacity: 1;
+  color: var(--text);
+  padding-inline: 8px;
+}
+.wid .bkc .gl {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--chip);
+  font: 500 20px/1.9 var(--bf);
+}
+.wid .bkc .gl h5 {
+  margin: 0 0 4px;
+  font: 700 13px 'Noto Naskh Arabic';
+  color: var(--accent-t);
+}
+.wid .bkc .gl p {
+  margin: 2px 0;
+}
+
+.gbub .gdef {
+  padding: 2px 0 10px;
+}
+.gbub .gdef + .gdef {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+.gbub p {
+  margin: 0 0 6px;
+  font: 500 16px/1.9 var(--bf);
+}
+.gbub .gd-f {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.gbub small {
+  color: var(--text-dim);
+  font: 500 12px 'Noto Naskh Arabic';
+}
+#pop[data-mode='gl'] {
+  width: min(340px, calc(100vw - 20px));
+}
+
+.wch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  min-height: 72px;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface-2);
+  align-content: flex-start;
+  margin-bottom: 8px;
+}
+.wch > .n {
+  margin: auto;
+  text-align: center;
+  font: 500 13px/1.7 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.wch button {
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font: 600 16px var(--bf, 'Noto Naskh Arabic');
+  color: var(--text);
+  transition: all 0.15s;
+}
+.wch button.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.tb {
+  padding-bottom: 6px;
+  justify-content: center;
+}
+.tb .sw {
+  bottom: 3px;
+  top: auto;
+  left: 50%;
+  inset-inline-start: auto;
+  margin: 0;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  border-radius: 2px;
+  box-shadow: none;
+}
+
+#act:has(.cvr) {
+  flex-wrap: wrap;
+  overflow: visible;
+  justify-content: center;
+  row-gap: 4px;
+}
+#act .cvr {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+}
+#act .cvr button {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+}
+#pal .hg {
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+#pal .hgr {
+  flex: none;
+}
+
+.sh .hd {
+  min-height: 56px;
+  padding: 8px 16px;
+}
+#shBack {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 2px 8px rgba(60, 45, 20, 0.14);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+}
+#shBack[hidden] {
+  display: none;
+}
+#shBack i {
+  font-size: 20px;
+}
+.hbk-src {
+  display: none !important;
+}
+#shF:has(.hbk-src) button.pri {
+  flex: 1;
+}
+#shT {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+#shT .ins-edit {
+  margin: 0;
+  min-height: 38px;
+  padding: 0 14px;
+  font-size: 13px;
+  gap: 6px;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+#shT .ins-edit i {
+  font-size: 16px;
+}
+.st-reset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text-dim);
+  font: 700 14px 'Noto Naskh Arabic';
+}
+.st-reset i {
+  font-size: 19px;
+}
+
+#qa #bRedo {
+  order: 1;
+}
+#qa #bUndo {
+  order: 2;
+}
+#qa #bIns {
+  order: 3;
+}
+#qa {
+  gap: 10px;
+}
+
+.gsz {
+  margin-top: 14px !important;
+}
+#shB .kg-t {
+  margin-top: 18px;
+}
+.pgpv + .kg-t {
+  margin-top: 16px;
+}
+.ap-paper {
+  padding: 12px 14px 14px;
+}
+.ap-paper .fl {
+  margin-bottom: 10px;
+}
+.ap-paper .kchips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  overflow: visible;
+}
+.ap-paper .kchip {
+  width: 100%;
+  min-height: 44px;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0 6px;
+}
+
+#pal {
+  padding-inline: 14px;
+}
+#pal .pws {
+  padding-inline: 4px;
+}
+#pal .hg.act {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 13px;
+  background: var(--surface-2);
+  font: 700 12.5px 'Noto Naskh Arabic';
+  color: var(--text);
+}
+#pal .hg.act i {
+  font-size: 18px;
+}
+#pal .hnote {
+  flex: 1;
+  justify-content: center;
+  padding: 8px 4px;
+  text-align: center;
+  line-height: 1.5;
+}

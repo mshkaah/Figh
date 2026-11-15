@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <title>سبورة المعلم</title>
+    <link rel="stylesheet" href="../vendor/tabler/tabler-icons.min.css" />
+    <link rel="stylesheet" href="../vendor/fonts.css" />
+    <link rel="stylesheet" href="board.css" />
+    <link rel="stylesheet" href="kit.css" />
+    <link rel="stylesheet" href="chrome.css" />
+    <link rel="stylesheet" href="book.css" />
+    <link rel="stylesheet" href="add.css" />
+    <link rel="stylesheet" href="polish.css" />
+    <link rel="stylesheet" href="studio.css" />
+    <link rel="stylesheet" href="cards.css" />
+  </head>
+  <body>
+    <div id="stage">
+      <div id="world"></div>
+      <canvas id="cv"></canvas>
+    </div>
+    <header id="top">
+      <button class="ib" id="bExit" aria-label="خروج"><i class="ti ti-x"></i></button>
+      <button class="ttl" id="bTitle" style="background: none; border: 0; justify-content: flex-start"></button>
+      <div class="nav">
+        <button class="ib" id="bPrev" aria-label="السابقة"><i class="ti ti-chevron-right"></i></button
+        ><button id="bCnt" class="cnt" aria-label="الصفحات"></button
+        ><button class="ib" id="bNext" aria-label="التالية"><i class="ti ti-chevron-left"></i></button>
+      </div>
+      <button id="sessBtn" aria-label="جلسة شرح وتسجيل">
+        <i class="ti ti-presentation"></i><i class="dot"></i><span>جلسة شرح</span>
+      </button>
+      <button class="ib" id="bMore" aria-label="المزيد"><i class="ti ti-dots"></i></button>
+    </header>
+    <div id="rail"></div>
+    <div id="zoom">
+      <button id="zIn" aria-label="تكبير"><i class="ti ti-plus"></i></button
+      ><button id="zPct" aria-label="إعادة التكبير إلى ١٠٠٪">١٠٠٪</button
+      ><button id="zOut" aria-label="تصغير"><i class="ti ti-minus"></i></button
+      ><button id="zHome" aria-label="أقرب محتوى"><i class="ti ti-focus-centered"></i></button>
+    </div>
+    <div id="hint">
+      <div class="c">
+        <h2>ابدأ درسك</h2>
+        <p>من أين تريد أن تبدأ؟</p>
+        <div class="hg">
+          <button class="pr" data-a="pBlank">
+            <i class="ti ti-file-plus"></i>ورقة بيضاء<small>اكتب وارسم مباشرة</small></button
+          ><button data-a="pBook"><i class="ti ti-book-2"></i>من كتاب<small>مرجع في مشكاة</small></button
+          ><button data-a="pFile"><i class="ti ti-file-import"></i>من ملف<small>PDF · صور · عرض</small></button
+          ><button data-a="pQ"><i class="ti ti-list-check"></i>صفحة سؤال<small>أسئلة وتمارين</small></button>
+        </div>
+      </div>
+    </div>
+    <div id="revealBtn">
+      <button id="rvPrev" class="ib"><i class="ti ti-eye-off"></i></button
+      ><button id="rvNext" class="pri"><i class="ti ti-eye"></i>كشف التالي</button>
+    </div>
+    <button id="unfocus" class="ib" style="background: var(--surface)"><i class="ti ti-arrows-minimize"></i></button>
+    <footer id="dock">
+      <button id="dockTg" aria-label="إخفاء/إظهار الأدوات"><i class="ti ti-chevron-down"></i></button>
+      <div id="pal"></div>
+      <div id="tools"></div>
+    </footer>
+    <div id="szb"></div>
+    <div id="qa">
+      <button class="qb pri" id="bIns" aria-label="إدراج"><i class="ti ti-plus"></i></button
+      ><button class="qb" id="bUndo" aria-label="تراجع"><i class="ti ti-arrow-back-up"></i></button
+      ><button class="qb" id="bRedo" aria-label="إعادة"><i class="ti ti-arrow-forward-up"></i></button>
+    </div>
+    <button id="away" aria-label="اذهب إلى المحتوى"><i class="ti ti-arrow-big-up-lines"></i></button>
+    <div id="pop"></div>
+    <div id="act"></div>
+    <div id="ed">
+      <textarea id="edIn" rows="1" placeholder="اكتب النص"></textarea><button class="pri" id="edOk">تم</button>
+    </div>
+    <canvas id="fx"></canvas>
+    <input type="file" id="fImg" accept="image/*" hidden />
+    <input type="file" id="fDoc" accept="*/*" hidden />
+    <div id="toast"></div>
+    <div id="veil"></div>
+    <div class="sh" id="sh">
+      <div class="gr"></div>
+      <div class="hd">
+        <button class="ib" id="shBk" aria-label="رجوع"><i class="ti ti-arrow-right"></i></button>
+        <h3 id="shT"></h3>
+        <button class="ib" id="shX"><i class="ti ti-x"></i></button>
+      </div>
+      <div class="bd" id="shB"></div>
+      <div class="ft" id="shF" style="display: none"></div>
+    </div>
+    <script src="recog.js"></script>
+    <script src="store.js"></script>
+    <script src="glyphs.js"></script>
+    <script src="core.js"></script>
+    <script src="colors.js"></script>
+    <script src="input.js"></script>
+    <script src="ui.js"></script>
+    <script src="pop.js"></script>
+    <script src="set.js"></script>
+    <script src="pal.js"></script>
+    <script src="book.js"></script>
+    <script src="ui2.js"></script>
+    <script src="widgets.js"></script>
+    <script src="extra.js"></script>
+    <script src="rec.js"></script>
+    <script src="boot.js"></script>
+  </body>
+</html>

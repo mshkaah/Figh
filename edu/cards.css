@@ -1,0 +1,558 @@
+.wid {
+  padding: 14px 18px 18px;
+  border-radius: 20px;
+  background: var(--wbg, var(--surface));
+  color: var(--wt, var(--text));
+  box-shadow:
+    0 8px 24px rgba(40, 30, 20, 0.12),
+    inset 0 0 0 1.5px color-mix(in srgb, var(--wa, var(--accent)) 38%, transparent);
+  border: 0;
+}
+.wid::before {
+  display: none;
+}
+.wid .wh {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  margin: 0 0 12px;
+  flex-wrap: nowrap;
+}
+.wid .wh .sp {
+  flex: 1;
+  min-width: 6px;
+}
+.wid .wh .tg,
+.wid .wh .rl,
+.wid .wh .dfb {
+  position: static;
+  inset: auto;
+  transform: none;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font: 700 12px/1 'Noto Naskh Arabic';
+  white-space: nowrap;
+  border: 0;
+}
+.wid .wh .tg {
+  background: color-mix(in srgb, var(--wa, var(--accent)) 14%, transparent);
+  color: var(--wa, var(--accent-t));
+  letter-spacing: 0;
+}
+.wid .wh .rl {
+  background: var(--wa, var(--accent));
+  color: #fff;
+}
+.wid .wh .dfb {
+  background: var(--chip);
+  color: var(--text-dim);
+}
+.wid .wh .dfb.df-e {
+  color: #1f7a4d;
+  background: color-mix(in srgb, #1f7a4d 14%, transparent);
+}
+.wid .wh .dfb.df-m {
+  color: #a86a00;
+  background: color-mix(in srgb, #e09b00 18%, transparent);
+}
+.wid .wh .dfb.df-h,
+.wid .wh .dfb.df-x {
+  color: #b53a1f;
+  background: color-mix(in srgb, #c0502a 16%, transparent);
+}
+.wid .wh i.ti {
+  font-size: 14px;
+}
+.wid .wh .rs {
+  position: static;
+  inset: auto;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  min-height: 30px;
+  padding: 0;
+  border-radius: 50%;
+  opacity: 0.7;
+  background: transparent;
+  border: 1px solid var(--line2);
+  display: grid;
+  place-items: center;
+}
+.wid .wh .rs i {
+  font-size: 16px;
+}
+.wid .bd2 {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.wid .q {
+  margin: 0;
+  padding: 0;
+  font:
+    700 26px/1.7 'Scheherazade New',
+    'Amiri',
+    serif;
+}
+.wid .q::after {
+  display: none;
+}
+.wid .an {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.wid .opt {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 9px 14px;
+  border-radius: 14px;
+  text-align: start;
+  border: 1.5px solid color-mix(in srgb, var(--wa, var(--accent)) 30%, var(--line2));
+  background: color-mix(in srgb, var(--wa, var(--accent)) 5%, var(--surface));
+  font:
+    600 22px/1.5 'Scheherazade New',
+    'Amiri',
+    serif;
+  color: inherit;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    transform 0.12s;
+}
+.wid .opt:active {
+  transform: scale(0.985);
+}
+.wid .opt .lt {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  clip-path: none;
+  border: 0;
+  background: var(--wa, var(--accent));
+  color: #fff;
+  font: 700 15px 'Noto Naskh Arabic';
+}
+.wid .opt.ok {
+  border-color: var(--ok);
+  background: color-mix(in srgb, var(--ok) 14%, var(--surface));
+}
+.wid .opt.ok .lt {
+  background: var(--ok);
+}
+.wid .opt.no {
+  border-color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 12%, var(--surface));
+}
+.wid .opt.no .lt {
+  background: var(--bad);
+}
+.wid .opt.dim {
+  opacity: 0.5;
+}
+.wid .opt.bad {
+  animation: wShake 0.4s;
+}
+@keyframes wShake {
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+.wid .tfrow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.wid .tfrow .opt {
+  justify-content: center;
+  min-height: 60px;
+  font-size: 24px;
+}
+.wid .mu {
+  margin: 0;
+  font: 700 13px 'Noto Naskh Arabic';
+  color: var(--wa, var(--accent-t));
+}
+.wid.dk .wh .tg {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.wid .bkc .bkh {
+  margin-top: 2px;
+}
+
+.wid .hk {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.wid .hk .opt {
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-height: 64px;
+  padding: 8px 4px;
+  text-align: center;
+  font: 700 20px/1.3 'Noto Naskh Arabic';
+}
+.wid .hk .opt small {
+  font: 500 11.5px 'Noto Naskh Arabic';
+  opacity: 0.7;
+}
+.wid .hk .opt[data-h='0'] {
+  --wa: #1f7a4d;
+}
+.wid .hk .opt[data-h='1'] {
+  --wa: #4a8f3a;
+}
+.wid .hk .opt[data-h='2'] {
+  --wa: #51606e;
+}
+.wid .hk .opt[data-h='3'] {
+  --wa: #b8791a;
+}
+.wid .hk .opt[data-h='4'] {
+  --wa: #b53a1f;
+}
+
+.wid .rvl {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wid .rvl .ri {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  border: 1.5px dashed color-mix(in srgb, var(--wa, var(--accent)) 45%, var(--line2));
+  background: transparent;
+  color: inherit;
+  font:
+    600 22px/1.5 'Scheherazade New',
+    'Amiri',
+    serif;
+  text-align: start;
+  width: 100%;
+}
+.wid .rvl .ri .lt {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--wa, var(--accent)) 16%, transparent);
+  color: var(--wa, var(--accent-t));
+  font: 700 14px 'Noto Naskh Arabic';
+}
+.wid .rvl .ri.on {
+  border-style: solid;
+  background: color-mix(in srgb, var(--wa, var(--accent)) 7%, var(--surface));
+}
+.wid .rvl .ri.on .lt {
+  background: var(--wa, var(--accent));
+  color: #fff;
+}
+.wid .rvl .ri .hid {
+  color: var(--mute);
+  font: 500 14px 'Noto Naskh Arabic';
+}
+.wid .rvl .rn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 0;
+  background: var(--wa, var(--accent));
+  color: #fff;
+  font: 700 14px 'Noto Naskh Arabic';
+}
+
+.apb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  margin: 6px 0 14px;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface-2);
+  color: var(--text);
+  text-align: start;
+}
+.apb > .ti:first-child {
+  font-size: 22px;
+  color: var(--accent-text);
+}
+.apb .kt {
+  flex: 1;
+  font: 700 15px 'Noto Naskh Arabic';
+}
+.apb small {
+  display: block;
+  margin-top: 2px;
+  font: 500 12px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.apb .ch {
+  transition: transform 0.2s;
+}
+.apb.open .ch {
+  transform: rotate(180deg);
+}
+.hkp {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+.hkp button {
+  min-height: 46px;
+  padding: 0 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-2);
+  font: 700 15px 'Noto Naskh Arabic';
+}
+.hkp button.on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.wid.sk-bold {
+  padding-top: 0;
+  overflow: hidden;
+  box-shadow:
+    0 8px 24px rgba(40, 30, 20, 0.14),
+    inset 0 0 0 2px var(--wa, var(--accent));
+}
+.wid.sk-bold .wh {
+  margin: 0 -18px 14px;
+  padding: 10px 18px;
+  min-height: 52px;
+  background: var(--wa, var(--accent));
+}
+.wid.sk-bold .wh .tg {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+.wid.sk-bold .wh .rl {
+  background: #fff;
+  color: var(--wa, var(--accent));
+}
+.wid.sk-bold .wh .dfb {
+  background: rgba(255, 255, 255, 0.9);
+}
+.wid.sk-bold .wh .rs {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+.wid.sk-flat {
+  box-shadow: none;
+  border-radius: 12px;
+  background: var(--surface);
+  outline: 2.5px solid var(--wa, var(--accent));
+  outline-offset: -2.5px;
+}
+.wid.sk-flat .opt {
+  border-radius: 8px;
+}
+.wid.sk-note {
+  border-radius: 8px 8px 20px 20px;
+  background:
+    repeating-linear-gradient(
+      transparent 0 38px,
+      color-mix(in srgb, var(--wa, var(--accent)) 9%, transparent) 38px 39px
+    ),
+    var(--surface);
+  box-shadow: 0 6px 16px rgba(40, 30, 20, 0.12);
+  border-inline-start: 5px solid #d9534f;
+}
+.wid.sk-note .opt {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.sks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.sks button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 2px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-2);
+  font: 700 12px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.sks button.on {
+  border-color: var(--accent);
+  color: var(--accent-text);
+  background: var(--chip);
+}
+.skp {
+  display: block;
+  width: 44px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--accent);
+  padding: 4px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.skp b {
+  display: block;
+  height: 7px;
+  border-radius: 3px;
+  background: var(--accent);
+  opacity: 0.9;
+  margin-bottom: 3px;
+}
+.skp i {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line-strong);
+  margin-bottom: 3px;
+}
+.skp.sk-bold {
+  padding: 0;
+}
+.skp.sk-bold b {
+  height: 11px;
+  border-radius: 0;
+  margin: 0 0 4px;
+}
+.skp.sk-bold i {
+  margin: 0 4px 3px;
+}
+.skp.sk-flat {
+  border-width: 2.5px;
+  border-radius: 4px;
+}
+.skp.sk-note {
+  border-inline-start: 4px solid #d9534f;
+}
+
+.wid.sk-chalk {
+  background: #24352f;
+  color: #f4f1e6;
+  border-radius: 14px;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 6px #6b4a2f;
+}
+.wid.sk-chalk .q,
+.wid.sk-chalk .mb,
+.wid.sk-chalk .wh {
+  color: #f4f1e6;
+}
+.wid.sk-chalk .opt {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px dashed rgba(244, 241, 230, 0.55);
+  color: #f4f1e6;
+}
+.wid.sk-chalk .wh .tg {
+  background: rgba(255, 255, 255, 0.16);
+  color: #f4f1e6;
+}
+.wid.sk-side {
+  border-radius: 6px 18px 18px 6px;
+  box-shadow: 0 4px 14px rgba(40, 30, 20, 0.12);
+  border: 1px solid var(--line-strong);
+  border-inline-start: 12px solid var(--wa, var(--accent));
+}
+.wid.sk-lift {
+  border-radius: 22px;
+  border: 0;
+  box-shadow:
+    0 18px 38px rgba(40, 30, 20, 0.22),
+    0 2px 0 var(--wa, var(--accent));
+  transform-origin: center;
+}
+.wid.sk-lift .opt {
+  border-radius: 999px;
+}
+.skp.sk-chalk {
+  background: #24352f;
+  border-color: #6b4a2f;
+  border-width: 3px;
+}
+.skp.sk-chalk i,
+.skp.sk-chalk b {
+  background: rgba(255, 255, 255, 0.7);
+}
+.skp.sk-side {
+  border-inline-start: 8px solid var(--accent);
+}
+.skp.sk-lift {
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.25);
+  border-color: transparent;
+}
+
+.aph {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font: 700 15px 'Noto Naskh Arabic';
+  color: var(--text);
+}
+.aph .ti {
+  font-size: 20px;
+  color: var(--accent-text);
+}
+#pop > .cust2,
+#pop > .cust2.ed {
+  box-sizing: border-box;
+  width: auto;
+  margin: 10px 16px 0 !important;
+}
+#pop > .cust2:last-child {
+  margin-bottom: 16px !important;
+}
+#pop > .ctone.sv {
+  margin-bottom: 4px;
+}
+.pp-x.pp-bro {
+  width: 34px;
+  height: 34px;
+  margin-inline-end: 2px;
+}
+.pp-x.pp-bro i {
+  font-size: 17px;
+}

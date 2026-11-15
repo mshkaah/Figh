@@ -22,7 +22,6 @@ import sys
 
 PLACEHOLDER = '\u0001'
 
-
 def clean_text(text):
     if text is None:
         return text
@@ -46,7 +45,6 @@ def clean_text(text):
     cleaned = re.sub(r'\n\n +', '\n\n', cleaned)
     return cleaned
 
-
 def process_table(conn, table, dry_run=True):
     cur = conn.cursor()
     cur.execute(f"SELECT rowid, body FROM {table}")
@@ -66,7 +64,6 @@ def process_table(conn, table, dry_run=True):
     if not dry_run:
         conn.commit()
     return changed, len(rows), diffs
-
 
 if __name__ == '__main__':
     db_path = sys.argv[1] if len(sys.argv) > 1 else 'books_test.db'

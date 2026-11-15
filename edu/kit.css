@@ -1,0 +1,619 @@
+:root {
+  --line-strong: var(--line2);
+  --text-dim: var(--mute);
+  --accent-text: var(--accent-t);
+  --accent-ink: var(--ink);
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --tap: 44px;
+  --bar-h: 52px;
+  --z-dock: 20;
+  --z-pop: 25;
+  --z-sheet: 41;
+  --z-ed: 50;
+  --z-pick: 80;
+}
+
+.sh {
+  border-radius: 20px 20px 0 0;
+  max-height: 92%;
+  box-shadow: 0 -10px 40px rgba(40, 25, 10, 0.22);
+}
+.sh .gr {
+  margin: 8px auto 0;
+}
+.sh .hd {
+  padding: 8px 18px 6px;
+  position: relative;
+}
+.sh .hd h3 {
+  font: 700 16px 'Noto Naskh Arabic';
+  color: var(--accent-text);
+  padding-inline-end: 4px;
+}
+.sh .bd {
+  padding: 6px 18px calc(env(safe-area-inset-bottom, 0px) + 18px);
+}
+.sh .ft {
+  padding: 10px 18px calc(env(safe-area-inset-bottom, 0px) + 12px);
+}
+.sh .ft button {
+  min-height: 46px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+}
+
+#shX,
+.sx {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 2px 8px rgba(60, 45, 20, 0.14);
+  color: var(--text-dim);
+  position: relative;
+}
+#shX::before,
+#shX::after,
+.sx::before,
+.sx::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 1.6px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+#shX::after,
+.sx::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+#shX .ti {
+  display: none;
+}
+#shX::after,
+.sx::after {
+}
+
+#shX {
+  overflow: visible;
+}
+#shX span.hit {
+  position: absolute;
+  inset: -6px;
+}
+
+.fld {
+  margin: 12px 0;
+}
+.fld > label,
+.fl {
+  display: block;
+  font: 700 12px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+  margin: 0 2px 6px;
+}
+.ginp {
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  min-height: 46px;
+}
+.ginp:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.ksrch {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 2px 0 10px;
+}
+.ksrch > i {
+  position: absolute;
+  inset-inline-start: 13px;
+  font-size: 18px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+.ksrch input {
+  width: 100%;
+  height: 46px;
+  padding: 0 42px;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font-size: 15px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ksrch input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.ksrch .kx {
+  position: absolute;
+  inset-inline-end: 4px;
+  width: 36px;
+  height: 36px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  color: var(--text-dim);
+  display: none;
+}
+.ksrch.has .kx {
+  display: inline-flex;
+}
+
+.kg {
+  margin: 0 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  overflow: hidden;
+}
+.kg-h {
+  padding: 10px 14px 4px;
+  font: 700 11.5px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.kg-t {
+  margin: 16px 4px 6px;
+  font: 700 12px 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.kr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 54px;
+  padding: 8px 14px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  text-align: start;
+  justify-content: flex-start;
+  white-space: normal;
+  font: 600 15px/1.45 'Noto Naskh Arabic';
+  color: var(--text);
+}
+.kg > .kr:first-child,
+.kg-h + .kr {
+  border-top: 0;
+}
+.kr:active {
+  background: var(--chip);
+  transform: none;
+}
+.kr > i.ti {
+  font-size: 21px;
+  color: var(--accent-text);
+  flex: none;
+}
+.kr .kt {
+  flex: 1;
+  min-width: 0;
+}
+.kr .kt small {
+  display: block;
+  font: 500 12px/1.5 'Noto Naskh Arabic';
+  color: var(--text-dim);
+}
+.kr .kv {
+  color: var(--text-dim);
+  font: 600 13px 'Noto Naskh Arabic';
+  flex: none;
+}
+.kr .kch {
+  color: var(--text-dim);
+  font-size: 18px;
+  flex: none;
+}
+.kr.on {
+  background: var(--chip);
+}
+
+.kr.pk .kc {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--line-strong);
+  display: grid;
+  place-items: center;
+  color: transparent;
+}
+.kr.pk.on .kc {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.kr.pk .kc i {
+  font-size: 15px;
+}
+.kr.pk.sq .kc {
+  border-radius: 8px;
+}
+
+.ksw {
+  flex: none;
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  position: relative;
+  transition: background 0.2s;
+  border: 0;
+  padding: 0;
+  min-height: 0;
+}
+.ksw::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+.ksw.on {
+  background: var(--accent);
+}
+[dir='rtl'] .ksw.on::after {
+  transform: translateX(-20px);
+}
+[dir='ltr'] .ksw.on::after {
+  transform: translateX(20px);
+}
+.ksw::before {
+  content: '';
+  position: absolute;
+  inset: -9px -4px;
+}
+
+.kseg {
+  display: flex;
+  gap: 6px;
+}
+.kseg > button {
+  flex: 1;
+  min-height: 44px;
+  padding: 8px 6px;
+  font: 600 13.5px 'Noto Naskh Arabic';
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  white-space: normal;
+  line-height: 1.4;
+}
+.kseg > button.on {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+.kseg.tabs {
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.kseg.tabs::-webkit-scrollbar {
+  display: none;
+}
+.kseg.tabs > button {
+  flex: 1 0 auto;
+  min-width: 74px;
+}
+
+.kchips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.kchip {
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font: 600 13.5px 'Noto Naskh Arabic';
+  color: var(--text);
+}
+.kchip.on {
+  background: var(--chip);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.kstep {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  overflow: hidden;
+}
+.kstep button {
+  width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: 20px;
+}
+.kstep b {
+  min-width: 36px;
+  text-align: center;
+  font: 700 18px 'Noto Naskh Arabic';
+}
+
+.kcard {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 12px 14px;
+}
+
+input[type='range'].krg {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 28px;
+  background: transparent;
+  accent-color: auto;
+  flex: 1;
+  min-width: 0;
+  direction: ltr;
+}
+input[type='range'].krg::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(to right, var(--accent) var(--p, 50%), var(--line-strong) var(--p, 50%));
+}
+input[type='range'].krg::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -9px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--accent);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+input[type='range'].krg::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line-strong);
+}
+input[type='range'].krg::-moz-range-progress {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+input[type='range'].krg::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 3px solid var(--accent);
+}
+
+#cpOv {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-pick);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+#cpOv.s {
+  display: flex;
+}
+#cpOv .cpp {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border-radius: 20px 20px 0 0;
+  padding: 14px 18px calc(18px + env(safe-area-inset-bottom, 0px));
+  animation: cpUp 0.2s ease;
+}
+@keyframes cpUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0.6;
+  }
+}
+#cpOv h3 {
+  margin: 0 0 12px;
+  font: 700 16px 'Noto Naskh Arabic';
+  color: var(--accent-text);
+  padding-inline-end: 46px;
+}
+#cpOv .sx {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 14px;
+}
+.cp-sv {
+  position: relative;
+  height: 170px;
+  border-radius: 14px;
+  overflow: hidden;
+  touch-action: none;
+  cursor: crosshair;
+  background:
+    linear-gradient(to top, #000, transparent), linear-gradient(to left, #fff, rgba(255, 255, 255, 0)),
+    hsl(var(--cp-h, 20), 100%, 50%);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+.cp-th {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+.cp-hue {
+  position: relative;
+  height: 22px;
+  margin: 14px 0;
+  border-radius: 11px;
+  touch-action: none;
+  cursor: pointer;
+  background: linear-gradient(to left, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+.cp-hue .cp-th {
+  top: 50%;
+  background: transparent;
+}
+.cp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.cp-prev {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  flex: none;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+.cp-hex {
+  direction: ltr;
+  text-align: center;
+  letter-spacing: 1px;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  width: 112px;
+  flex: none;
+}
+.cp-nm {
+  flex: 1;
+  min-width: 0;
+}
+.cp-act {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+.cp-act button {
+  flex: 1;
+  min-height: 48px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 15px;
+}
+.cp-act .ok {
+  flex: 2;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+.cp-saved {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.cp-s {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 4px 2px;
+  border-top: 1px solid var(--line);
+}
+.cp-s:first-child {
+  border-top: 0;
+}
+.cp-s .sw {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex: none;
+  border: 1px solid var(--line-strong);
+  padding: 0;
+  min-height: 0;
+}
+.cp-s .nm {
+  flex: 1;
+  min-width: 0;
+  text-align: start;
+  border: 0;
+  background: none;
+  min-height: 44px;
+  font: 600 14.5px 'Noto Naskh Arabic';
+  justify-content: flex-start;
+  padding: 0 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cp-s .nm small {
+  color: var(--text-dim);
+  font: 500 12px Tahoma;
+  margin-inline-start: 8px;
+  direction: ltr;
+}
+.cp-s .ib {
+  width: 40px;
+  min-height: 40px;
+  border: 0;
+  color: var(--text-dim);
+}
+.cp-s .ib.dng {
+  color: var(--bad);
+}
+.cp-s input.rn {
+  flex: 1;
+  min-width: 0;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--accent);
+  padding: 0 10px;
+  font: 600 14.5px 'Noto Naskh Arabic';
+  background: var(--surface);
+}
+.cp-empty {
+  padding: 10px 2px;
+  color: var(--text-dim);
+  font: 500 13px/1.7 'Noto Naskh Arabic';
+}
+
+#shX,
+.sx {
+  position: relative;
+}
+#shX {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+}

@@ -1,6 +1,6 @@
-const SHELL_VERSION = 'v1.00-t3';
+const SHELL_VERSION = '1.2.7';
 const DB_VERSION = '29';
-importScripts('./notif-core.js');
+importScripts('./js/notif-core.js');
 const SHELL_CACHE = `rasael-shell-${SHELL_VERSION}`;
 const DB_CACHE = `rasael-db-${DB_VERSION}`;
 const KEEP = [SHELL_CACHE, DB_CACHE];
@@ -8,37 +8,101 @@ const KEEP = [SHELL_CACHE, DB_CACHE];
 const APP_SHELL = [
   './',
   './index.html',
-  './app.js',
-  './features.js',
-  './writing-view.js',
-  './reader-select.js',
-  './recents.js',
-  './reminders.js',
-  './trash.js',
-  './v77.js',
-  './guide.js',
-  './v79.js',
-  './v80.js',
-  './v81.js',
-  './share81.js',
-  './v82.js',
-  './v89.js',
-  './v95.js',
-  './v96.js',
-  './v100.js',
-  './v80.css',
-  './v81.css',
-  './v82.css',
-  './v83.css',
-  './v89.css',
-  './v91.css',
-  './v95.css',
-  './v96.css',
-  './v100.css',
-  './urwa_toc.js',
-  './notif-core.js',
-  './ui-kit.js',
-  './ui-kit.css',
+  './js/boot.js',
+  './css/base.css',
+  './css/ui-kit.css',
+  './css/v80.css',
+  './css/v81.css',
+  './css/v82.css',
+  './css/v83.css',
+  './css/v89.css',
+  './css/v91.css',
+  './css/v95.css',
+  './css/v96.css',
+  './css/v99.css',
+  './css/v101.css',
+  './css/hints.css',
+  './css/discover.css',
+  './css/coach.css',
+  './css/v110.css',
+  './css/v111.css',
+  './css/v112.css',
+  './css/v130.css',
+  './css/v132.css',
+  './css/v133.css',
+  './css/v134.css',
+  './css/v135.css',
+  './css/v136.css',
+  './css/v141.css',
+  './css/v144.css',
+  './css/jami.css',
+  './css/jami-glass.css',
+  './css/edu.css',
+  './js/ui-kit.js',
+  './js/loading-text.js',
+  './js/urwa_toc.js',
+  './js/notif-core.js',
+  './js/app.js',
+  './js/features.js',
+  './js/writing-view.js',
+  './js/reader-select.js',
+  './js/recents.js',
+  './js/reminders.js',
+  './js/trash.js',
+  './js/v77.js',
+  './js/v79.js',
+  './js/v80.js',
+  './js/v81.js',
+  './js/share81.js',
+  './js/v82.js',
+  './js/v89.js',
+  './js/v95.js',
+  './js/v96.js',
+  './js/v99.js',
+  './js/v101.js',
+  './js/v110.js',
+  './js/hints.js',
+  './js/discover.js',
+  './js/discover-guide.js',
+  './js/coach.js',
+  './js/coach-hand.js',
+  './js/v112.js',
+  './js/v141.js',
+  './js/v132.js',
+  './js/jami.js',
+  './js/v144.js',
+  './js/edu.js',
+  './edu/store.js',
+  './edu/board.html',
+  './edu/board.css',
+  './edu/kit.css',
+  './edu/chrome.css',
+  './edu/book.css',
+  './edu/add.css',
+  './edu/polish.css',
+  './edu/studio.css',
+  './edu/cards.css',
+  './edu/colors.js',
+  './edu/recog.js',
+  './edu/glyphs.js',
+  './edu/core.js',
+  './edu/input.js',
+  './edu/ui.js',
+  './edu/pop.js',
+  './edu/set.js',
+  './edu/pal.js',
+  './edu/book.js',
+  './edu/extra.js',
+  './edu/rec.js',
+  './edu/ui2.js',
+  './edu/widgets.js',
+  './edu/boot.js',
+  './vendor/pdfjs/pdf.min.js',
+  './vendor/pdfjs/pdf.worker.min.js',
+  './js/register-sw.js',
+  './icons/bismillah.png',
+  './icons/splash-192.png',
+  './icons/splash-512.png',
   './manifest.json',
   './vendor/sql-wasm.js',
   './vendor/sql-wasm.wasm',
@@ -47,6 +111,8 @@ const APP_SHELL = [
   './vendor/tabler/fonts/tabler-icons.woff2',
   './vendor/tabler/fonts/tabler-icons.woff',
   './vendor/fonts/amiri-arabic-400-normal.woff2',
+  './vendor/fonts/noto-naskh-arabic-arabic-400-normal.woff2',
+  './vendor/fonts/noto-naskh-arabic-arabic-700-normal.woff2',
   './vendor/fonts/amiri-arabic-700-normal.woff2',
   './vendor/fonts/amiri-latin-400-normal.woff2',
   './vendor/fonts/amiri-latin-700-normal.woff2',
@@ -73,7 +139,13 @@ const APP_SHELL = [
   './icons/marja/sadiq_shirazi.jpg',
   './icons/marja/waheed_khorasani.jpg',
   './icons/marja/mohammad_shirazi.jpg',
-  './icons/marja/zanjani.jpg','./icons/marja/haeri.jpg','./icons/marja/najafi.jpg','./icons/marja/tabrizi.jpg','./icons/marja/hakim.jpg','./icons/marja/khaqani.jpg','./icons/marja/makarem.jpg',
+  './icons/marja/zanjani.jpg',
+  './icons/marja/haeri.jpg',
+  './icons/marja/najafi.jpg',
+  './icons/marja/tabrizi.jpg',
+  './icons/marja/hakim.jpg',
+  './icons/marja/khaqani.jpg',
+  './icons/marja/makarem.jpg',
   './icons/sharh_diagrams/masala_7_8.png',
   './icons/sharh_diagrams/masala_9.png',
   './icons/sharh_diagrams/masala_11.png',
@@ -82,9 +154,27 @@ const APP_SHELL = [
 
 const MIN_DB_BYTES = 5 * 1024 * 1024;
 
+async function pagesAskConsent() {
+  try {
+    const cs = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    if (!cs.length) return false;
+    const rs = await Promise.all(cs.map((c) => new Promise((res) => {
+      const ch = new MessageChannel(); const t = setTimeout(() => res(false), 900);
+      ch.port1.onmessage = (m) => { clearTimeout(t); res(m.data === 'v2'); };
+      try { c.postMessage({ type: 'PROTO?' }, [ch.port2]); } catch (e) { clearTimeout(t); res(false); }
+    })));
+    return rs.some(Boolean);
+  } catch (e) { return false; }
+}
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(SHELL_CACHE).then((c) => c.addAll(APP_SHELL.map((u) => new Request(u, { cache: 'reload' })))));
-  self.skipWaiting();
+  event.waitUntil((async () => {
+    const c = await caches.open(SHELL_CACHE);
+    const OPTIONAL = /\/sharh_diagrams\//;
+    const results = await Promise.allSettled(APP_SHELL.map((u) => c.add(new Request(u + (u === './' ? '' : (u.includes('?') ? '&' : '?') + 'sv=' + SHELL_VERSION), { cache: 'reload' }))));
+    const failed = results.map((r, i) => [r, APP_SHELL[i]]).filter(([r, u]) => r.status === 'rejected' && !OPTIONAL.test(u)).map(([, u]) => u);
+    if (failed.length) throw new Error('shell cache failed: ' + failed.join(', '));
+    if (!(await pagesAskConsent())) self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', (event) => {
@@ -93,7 +183,6 @@ self.addEventListener('activate', (event) => {
   );
   self.clients.claim();
 });
-
 
 async function cleanNavResponse(resp) {
   try {
@@ -108,19 +197,10 @@ async function cleanNavResponse(resp) {
 }
 
 function isDbRequest(url) { return new URL(url).pathname.endsWith('/books.db'); }
-function isShellRequest(url) {
-  const u = new URL(url);
-  if (u.origin !== self.location.origin) return false;
-  const p = u.pathname.replace(/\/+$/, '') || '/';
-  return ['/', '/index.html', '/app.js', '/features.js', '/writing-view.js', '/reader-select.js', '/recents.js', '/reminders.js', '/trash.js', '/v77.js', '/guide.js', '/v79.js', '/urwa_toc.js', '/notif-core.js', '/ui-kit.js', '/ui-kit.css', '/manifest.json', '/service-worker.js'].some((sp) => p === sp || p.endsWith(sp));
-}
-
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   if (new URL(req.url).origin !== self.location.origin) return;
-
-  if (/\/books_part[12]\.bin$/.test(new URL(req.url).pathname)) return; // أجزاء القاعدة: يديرها app.js مباشرة
 
   if (isDbRequest(req.url)) {
     event.respondWith((async () => {
@@ -159,9 +239,9 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (req.mode === 'navigate' || isShellRequest(req.url)) {
+  if (req.mode === 'navigate') {
     event.respondWith(
-      caches.open(SHELL_CACHE).then((c) => c.match(req, { ignoreSearch: true }).then((hit) => hit || (req.mode === 'navigate' ? c.match('./index.html') : null)))
+      caches.open(SHELL_CACHE).then((c) => c.match(req, { ignoreSearch: true }).then((hit) => hit || (req.mode === 'navigate' ? c.match('./index.html', { ignoreSearch: true }) : null)))
         .then((hit) => hit || fetch(req).then((resp) => {
           if (resp && resp.ok) { const copy = resp.clone(); caches.open(SHELL_CACHE).then((c) => c.put(req, copy)).catch(() => {}); }
           return resp;
@@ -173,7 +253,7 @@ self.addEventListener('fetch', (event) => {
   }
 
   event.respondWith(
-    caches.match(req).then((cached) => {
+    caches.open(SHELL_CACHE).then((c) => c.match(req, { ignoreSearch: true })).then((cached) => {
       if (cached) return cached;
       return fetch(req)
         .then((r) => {
@@ -186,6 +266,7 @@ self.addEventListener('fetch', (event) => {
 });
 
 self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') { self.skipWaiting(); return; }
   if (event.data === 'NOTIF_TICK') { event.waitUntil(Promise.all([swNotifyIfDue().catch(() => {}), swRemindersIfDue().catch(() => {})])); return; }
   if (event.data === 'CLEAR_CACHES') {
     event.waitUntil(caches.keys().then((ns) => Promise.all(ns.map((n) => caches.delete(n)))));

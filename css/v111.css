@@ -1,0 +1,30 @@
+.rs-undo-bar:not(.has) { display: none; }
+.set-sec .set-group-title { border-bottom-color: color-mix(in srgb, var(--line) 70%, transparent); }
+#glossBooksSheet .gb-hint { padding: 2px 4px 10px; }
+#glossBooksSheet #glossBooksList { display: flex; flex-direction: column; gap: 8px; padding-bottom: 14px; }
+#glossBooksSheet .gb-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); transition: opacity .2s, border-color .2s; }
+#glossBooksSheet .gb-row:has(.toggle-switch.on) { border-color: rgba(var(--accent-rgb), .35); }
+#glossBooksSheet .gb-row:has(.toggle-switch:not(.on)) { opacity: .6; }
+#glossBooksSheet .gb-row .lbl { flex: 1; min-width: 0; padding: 0; font-size: 14px; display: flex; align-items: center; gap: 9px; }
+#glossBooksSheet .gb-n { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-content: center; font-size: 12px; background: rgba(var(--accent-rgb), .13); color: var(--accent-text, var(--accent)); }
+#glossBooksSheet .gb-ord { display: flex; flex-direction: column; gap: 2px; }
+#glossBooksSheet .gb-ord button { all: unset; width: 26px; height: 20px; display: grid; place-content: center; border-radius: 7px; font-size: 15px; color: var(--text-dim); cursor: pointer; background: var(--chip, rgba(128,128,128,.1)); }
+#glossBooksSheet .gb-ord button:disabled { opacity: .3; }
+#glossBooksSheet .gb-ord button:not(:disabled):active { background: rgba(var(--accent-rgb), .2); }
+#glossBooksSheet .gb-tools button { border-radius: 14px; background: var(--surface); }
+.cmp-sticky { scrollbar-width: none; } .cmp-sticky::-webkit-scrollbar { display: none; }
+.font-size-controls, .font-family-controls { gap: 3px; padding: 3px; border-radius: 15px; background: color-mix(in srgb, var(--text) 7%, var(--surface, #fff)); border: 1px solid var(--line); }
+.font-size-controls button, .font-family-controls button, body.night-mode .font-size-controls button, body.night-mode .font-family-controls button {
+  background: transparent; border: 0; border-radius: 12px; color: var(--text); font-family: inherit; font-weight: 600; padding: 8px 12px; transition: background .18s, color .18s; }
+.font-family-controls button:not(.active):not(.on):active, .font-size-controls button:not(.active):not(.on):active { background: rgba(var(--accent-rgb), .12); }
+.font-family-controls button.active, .font-size-controls button.active, .font-family-controls button.on, .font-size-controls button.on {
+  background: var(--accent); color: var(--accent-ink, #fff); border: 0; box-shadow: 0 2px 8px rgba(var(--accent-rgb), .3); }
+.settings-row.settings-row-stack .font-family-controls { flex-wrap: wrap; }
+.settings-action-btn { background: var(--surface, #fff); color: var(--accent-text, var(--accent)); border: 1.5px solid rgba(var(--accent-rgb), .45); border-radius: 12px; font-family: inherit; font-weight: 700; }
+.settings-action-btn:active { background: rgba(var(--accent-rgb), .12); }
+.settings-action-btn:disabled { opacity: .5; }
+.toggle-switch { background: color-mix(in srgb, var(--text) 24%, var(--surface, #fff)); }
+.toggle-switch.on { background: var(--accent); }
+.cs-pins button, .gb-tools button, .set-chip { color: var(--text); }
+body.night-mode .settings-action-btn { background: var(--surface); color: var(--accent-l, var(--accent)); border-color: rgba(var(--accent-rgb), .5); }
+body.night-mode .font-size-controls, body.night-mode .font-family-controls { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
